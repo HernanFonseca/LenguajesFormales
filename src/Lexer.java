@@ -51,12 +51,12 @@ public class Lexer {
         return result;
     }
 
-    public static Boolean lexContentMail(String input) {
-        Boolean result = false;
-        result = Pattern.matches("([a-z][a-z|0-9|[_]|[-]]*)@" +
-                                "(hotmail|gmail|outlook|yahoo)." +
-                                "(es|com|net|org|edu)$", input);
-        return result;
+    public static Boolean lexMail(String input) {
+        String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
+                        "(hotmail|gmail|outlook|yahoo)." +
+                        "(es|com|net|org|edu)$";
+        Boolean matches = Pattern.matches(pattern, input);
+        return matches;
     }
 
     
