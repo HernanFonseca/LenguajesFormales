@@ -6,6 +6,7 @@ public class App {
         System.out.println("Hello, World!");
         int a;
         int b;
+        int c;
         System.out.println("Hello");
         System.out.println("TEST");
     }
