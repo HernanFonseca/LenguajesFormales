@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Lexer {
     public static enum Type {
-        // This Scheme-like language has three token types:
-        // open parens, close parens, and an "atom" type
-        LPAREN, RPAREN, ATOM;
+        // Los tipos de Token que se tienen
+        NOMBRE, EMAIL, TELEFONO,
+        CONTNOMBRE, CONTEMAIL, CONTTELEFONO;
     }
     public static class Token {
         public final Type t;
