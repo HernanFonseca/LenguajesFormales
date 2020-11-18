@@ -1,7 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /*
  * Analizador Lexico para Formulario que tenemos
@@ -54,6 +56,15 @@ public class Lexer {
         return result;
     }
 
+
+    public static Boolean lexMail(String input) {
+        String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
+                        "(hotmail|gmail|outlook|yahoo)." +
+                        "(es|com|net|org|edu)$";
+        Boolean matches = Pattern.matches(pattern, input);
+        return matches;
+    }
+
     public static Boolean lexName(String input){
         String pattern = "[a-z|A-Z]+";
         boolean matches = Pattern.matches(pattern, input);
@@ -81,7 +92,5 @@ public class Lexer {
 
         //Aqui va el if comparando todos estos bool y el que sea true asigna el input a ese token
         return type;
-        
-
     }
 }
