@@ -1,14 +1,17 @@
+import java.util.*;
+
 public class App {
 
 
     
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        int a;
-        int b;
-        int c;
-        int d;
-        System.out.println("Hello");
-        System.out.println("TEST");
+
+        List<String> palabras=new ArrayList<String>();
+        String path ="./test.txt";
+
+        ReadFile fileReader = new ReadFile();
+        palabras=fileReader.ReadTxt(path);
+        System.out.println(palabras);
+
     }
 }
