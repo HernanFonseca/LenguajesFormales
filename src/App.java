@@ -7,8 +7,4 @@ public class App {
         System.out.println("Hello");
 
     }
-
-    public void hola() {
-        System.out.println("hola diganme si se ve esto");
-    }
 }
