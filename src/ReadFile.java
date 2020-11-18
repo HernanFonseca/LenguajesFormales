@@ -3,8 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ReadFile{
-    public public static String[] ReadTxt(String path) {
-        String[] input=new ArrayList<String>;
+    public static String[] ReadTxt(String path) {
+        List<String> input=new ArrayList<String>;
 
         try {
             File file = new File(path);
@@ -17,5 +17,6 @@ public class ReadFile{
             System.out.println("File not found");
             e.printStackTrace();
         }
+        return input;
     }
 }
