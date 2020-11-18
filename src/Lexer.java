@@ -2,8 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /*
- * Lexical analyzer for Scheme-like minilanguage:
- * (define (foo x) (bar (baz x)))
+ * Analizador Lexico para Formulario que tenemos
  */
 public class Lexer {
     public static enum Type {
@@ -13,69 +12,54 @@ public class Lexer {
     }
     public static class Token {
         public final Type t;
-        public final String c; // contents mainly for atom tokens
-        // could have column and line number fields too, for reporting errors later
+        public final String c; // contents
+
         public Token(Type t, String c) {
             this.t = t;
             this.c = c;
         }
         public String toString() {
-            if(t == Type.ATOM) {
-                return "ATOM<" + c + ">";
+            if(t == Type.CONTNOMBRE) {
+                return c;
             }
             return t.toString();
         }
     }
 
-    /*
-     * Given a String, and an index, get the atom starting at that index
-     */
-    public static String getAtom(String s, int i) {
-        int j = i;
-        for( ; j < s.length(); ) {
-            if(Character.isLetter(s.charAt(j))) {
-                j++;
-            } else {
-                return s.substring(i, j);
-            }
-        }
-        return s.substring(i, j);
-    }
-
-    public static List<Token> lex(String input) {
-        List<Token> result = new ArrayList<Token>();
-        for(int i = 0; i < input.length(); ) {
-            switch(input.charAt(i)) {
-            case '(':
-                result.add(new Token(Type.LPAREN, "("));
-                i++;
-                break;
-            case ')':
-                result.add(new Token(Type.RPAREN, ")"));
-                i++;
-                break;
-            default:
-                if(Character.isWhitespace(input.charAt(i))) {
-                    i++;
-                } else {
-                    String atom = getAtom(input, i);
-                    i += atom.length();
-                    result.add(new Token(Type.ATOM, atom));
-                }
-                break;
-            }
+    public static Boolean lexReservedName(String input) {
+        Boolean result = false;
+        if (input.equals("Nombre:")){
+            result = true;
         }
         return result;
     }
 
-    public static void main(String[] args) {
-        if(args.length < 1) {
-            System.out.println("Usage: java Lexer \"((some Scheme) (code to) lex)\".");
-            return;
+    public static Boolean lexReservedTelephone(String input){
+        Boolean result = false;
+        if (input.equals("Telefono:")){
+            result = true;
         }
-        List<Token> tokens = lex(args[0]);
-        for(Token t : tokens) {
-            System.out.println(t);
+        return result;
+    }
+
+    public static Boolean lexReservedEmail(String input){
+        Boolean result = false;
+        if(input.equals("Email:")){
+            result = true;
         }
+        return result;
+    }
+
+    
+    //Esta funcion se llama para cada palabra del read input que hernan hizo
+    public static Token tokenize(String input){
+        Boolean reservedEmail = lexReservedEmail(input);
+        Boolean reservedPhone = lexReservedTelephone(input); 
+        Boolean reservedName = lexReservedName(input);
+
+        //Aqui va el if comparando todos estos bool y el que sea true asigna el input a ese token
+
+
+
     }
 }
