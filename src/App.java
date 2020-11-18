@@ -7,6 +7,7 @@ public class App {
         int a;
         int b;
         int c;
+        int d;
         System.out.println("Hello");
         System.out.println("TEST");
     }
