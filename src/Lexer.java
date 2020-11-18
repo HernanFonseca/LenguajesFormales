@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.regex.*;
 
 /*
  * Analizador Lexico para Formulario que tenemos
@@ -47,6 +48,14 @@ public class Lexer {
         if(input.equals("Email:")){
             result = true;
         }
+        return result;
+    }
+
+    public static Boolean lexContentMail(String input) {
+        Boolean result = false;
+        result = Pattern.matches("([a-z][a-z|0-9|[_]|[-]]*)@" +
+                                "(hotmail|gmail|outlook|yahoo)." +
+                                "(es|com|net|org|edu)$", input);
         return result;
     }
 
