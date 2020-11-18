@@ -1,9 +1,12 @@
+import java.util.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        String[] lineas=new String[];
-        String path ="";
-        System.out.println("Hello, World!");
+        List<String> palabras=new ArrayList<String>();
+        String path ="./test.txt";
+
         ReadFile fileReader = new ReadFile();
-        lineas=fileReader.readFile(path);
+        palabras=fileReader.ReadTxt(path);
+        System.out.println(palabras);
     }
 }
