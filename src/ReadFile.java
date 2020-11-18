@@ -1,18 +1,19 @@
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
+import java.util.*;
 public class ReadFile{
-    public static String[] ReadTxt(String path) {
-        List<String> input=new ArrayList<String>;
+    public List<String> ReadTxt(String path) {
+        List<String> input=new ArrayList<String>();
 
         try {
             File file = new File(path);
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
+                
                 input.add(data);
             }
+            reader.close();
         } catch (Exception e) {
             System.out.println("File not found");
             e.printStackTrace();
