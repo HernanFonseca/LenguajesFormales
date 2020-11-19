@@ -57,7 +57,7 @@ public class Lexer {
     }
 
 
-    public static Boolean lexMail(String input) {
+    public static Boolean lexEmail(String input) {
         String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
                         "(hotmail|gmail|outlook|yahoo)." +
                         "(es|com|net|org|edu)$";
@@ -87,10 +87,35 @@ public class Lexer {
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
         Boolean name = lexName(input);
-        //Boolean email = lexEmail(input);
-        //Boolean telephone = lexTelephone(input);
+        Boolean email = lexEmail(input);
+        Boolean telephone = lexTelephone(input);
 
-        //Aqui va el if comparando todos estos bool y el que sea true asigna el input a ese token
+        if(reservedEmail){
+            System.out.println("REservado Email");
+            return "EMAIL:";
+
+        }
+        if(reservedPhone){
+            System.out.println("Resevrado Phone");
+            return "TELEFONO";
+        }
+        if(reservedName){
+            System.out.println("Reservado Nombre");
+            return "NOMBRE";
+        }
+        if(name){
+            System.out.println("ContNombre");
+            return "CONTNOMBRE";
+        }
+        if(email){
+            System.out.println("ContEmail");;
+            return "CONTEMAIL";
+        }
+        if(telephone){
+            System.out.println("ContTelefono");
+            return "CONTTELEFONO";
+        }
+        System.out.println("Papaya con:" + input);
         return type;
     }
 }
