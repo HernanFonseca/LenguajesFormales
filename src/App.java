@@ -19,7 +19,7 @@ public class App {
         List<String> palabras = new ArrayList<String>();
         List<Token> tokens = new ArrayList<Token>();
         
-        String path ="./1.txt";
+        String path ="./9.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
         
