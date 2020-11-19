@@ -33,11 +33,14 @@ public class App {
                 tokens.add(new Token(token, palabra));
             }else{
                 System.out.println("PAPAYA LEXICA");
+                tokens = new ArrayList<Token>();
                 break;
             }
         }
+        System.out.println("Tokens:");
         for(Token token : tokens) {
-            System.out.println(token.t);
+            System.out.print(token.t + ": " + token.c);
+            System.out.println("");
         }
     }
 }
