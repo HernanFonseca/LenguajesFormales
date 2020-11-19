@@ -19,7 +19,7 @@ public class App {
         List<String> palabras = new ArrayList<String>();
         List<Token> tokens = new ArrayList<Token>();
         
-        String path ="./9.txt";
+        String path ="./test.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
         
@@ -42,6 +42,11 @@ public class App {
             System.out.println("");
             if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
                 System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+                break;
+            }
+            if(previous.equals("") && token.t.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+                break;
             }
             previous=token.t;
         }
