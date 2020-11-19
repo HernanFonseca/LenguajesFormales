@@ -82,7 +82,7 @@ public class Lexer {
         if(telephone){
             return "CONTTELEFONO";
         }
-        System.out.println("Papaya con:" + input);
+        System.out.println("ERROR LÉXICO EN:" + input);
 
         return type;
     }

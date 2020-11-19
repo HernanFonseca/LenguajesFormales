@@ -41,7 +41,7 @@ public class App {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
             if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
-                System.out.println("PAPAYA SINTÁCTICA CON EL TOKEN: "+token.t);
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
             }
             previous=token.t;
         }
