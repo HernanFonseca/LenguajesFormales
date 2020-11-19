@@ -1,7 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
-
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -24,6 +20,7 @@ public class Lexer {
             this.t = t;
             this.c = c;
         }
+
         public String toString() {
             if(t == Type.CONTNOMBRE) {
                 return c;
@@ -57,8 +54,10 @@ public class Lexer {
     }
 
 
-    public static Boolean lexMail(String input) {
-        String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
+    public static Boolean lexEmail(String input) {
+
+        String pattern = "([A-z][a-z|0-9|[_]|[-]]*)@" +
+
                         "(hotmail|gmail|outlook|yahoo)." +
                         "(es|com|net|org|edu)$";
         Boolean matches = Pattern.matches(pattern, input);
@@ -77,20 +76,37 @@ public class Lexer {
         return matches;
     }
 
-
-    
-
     //Esta funcion se llama para cada palabra del read input que hernan hizo
-    public static String tokenize(String input){
+
+    public String tokenize(String input){
         String type = null;
         Boolean reservedEmail = lexReservedEmail(input);
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
         Boolean name = lexName(input);
-        //Boolean email = lexEmail(input);
-        //Boolean telephone = lexTelephone(input);
+        Boolean email = lexEmail(input);
+        Boolean telephone = lexTelephone(input);
 
-        //Aqui va el if comparando todos estos bool y el que sea true asigna el input a ese token
+        if(reservedEmail){
+            return "EMAIL";
+        }
+        if(reservedPhone){
+            return "TELEFONO";
+        }
+        if(reservedName){
+            return "NOMBRE";
+        }
+        if(name){
+            return "CONTNOMBRE";
+        }
+        if(email){
+            return "CONTEMAIL";
+        }
+        if(telephone){
+            return "CONTTELEFONO";
+        }
+        System.out.println("Papaya con:" + input);
+
         return type;
     }
 }
