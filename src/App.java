@@ -1,28 +1,22 @@
-//import java.util.regex.*;
+
+import java.util.regex.*;
+
 import java.util.*;
 
 public class App {
 
-
-    public static class Token {
-        public final String t;
-        public final String c; // contents
-
-        public Token(String t, String c) {
-            this.t = t;
-            this.c = c;
-        }
-    }
-
     public static void main(String[] args) throws Exception {
 
-        List<String> palabras = new ArrayList<String>();
-        List<Token> tokens = new ArrayList<Token>();
-        
+            String pattern = "[a-z]{1}[a-z|0-9|_|-]*[@]" + ".*(hotmail|gmail|outlook|yahoo).*{1}[.]" + ".*(es|com|net|org|edu).*{1}";
+            boolean matches = Pattern.matches(pattern, "edulinaro@gmail.com");
+            System.out.println(matches);
+
+
+
+        List<String> palabras=new ArrayList<String>();
         String path ="./test.txt";
-        Lexer analizadorLexico = new Lexer();
+
         ReadFile fileReader = new ReadFile();
-        
         palabras=fileReader.ReadTxt(path);
         //System.out.println(palabras);
         for (String palabra : palabras) {
