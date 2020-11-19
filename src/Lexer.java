@@ -74,7 +74,8 @@ public class Lexer {
     }
 
     //Esta funcion se llama para cada palabra del read input que hernan hizo
-    public static String tokenize(String input) {
+
+    public String tokenize(String input){
         String type = null;
         Boolean reservedEmail = lexReservedEmail(input);
         Boolean reservedPhone = lexReservedTelephone(input); 
