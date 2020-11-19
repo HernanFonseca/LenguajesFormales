@@ -36,7 +36,7 @@ public class App {
             }
         }
         System.out.println("Tokens:");
-        String previous;
+        String previous="";
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
@@ -45,6 +45,6 @@ public class App {
             }
             previous=token.t;
         }
-        }
+        
     }
 }
