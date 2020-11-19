@@ -5,28 +5,6 @@ import java.util.regex.Pattern;
  */
 public class Lexer {
 
-    public static enum Type {
-        // Los tipos de Token que se tienen
-        NOMBRE, EMAIL, TELEFONO,
-        CONTNOMBRE, CONTEMAIL, CONTTELEFONO;
-    }
-
-    public static class Token {
-        public final Type t;
-        public final String c; // contents
-
-        public Token(Type t, String c) {
-            this.t = t;
-            this.c = c;
-        }
-        public String toString() {
-            if(t == Type.CONTNOMBRE) {
-                return c;
-            }
-            return t.toString();
-        }
-    }
-
     public static Boolean lexReservedName(String input) {
         Boolean result = false;
         if (input.equals("Nombre:")){
