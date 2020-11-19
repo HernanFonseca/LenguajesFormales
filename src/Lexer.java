@@ -53,8 +53,11 @@ public class Lexer {
         return result;
     }
 
-    public static Boolean lexMail(String input) {
-        String pattern = "([A-Z][a-z|0-9|[_]|[-]]*)@" +
+
+    public static Boolean lexEmail(String input) {
+
+        String pattern = "([A-z][a-z|0-9|[_]|[-]]*)@" +
+
                         "(hotmail|gmail|outlook|yahoo)." +
                         "(es|com|net|org|edu)$";
         Boolean matches = Pattern.matches(pattern, input);
@@ -81,12 +84,29 @@ public class Lexer {
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
         Boolean name = lexName(input);
-        Boolean email = lexMail(input);
+        Boolean email = lexEmail(input);
         Boolean telephone = lexTelephone(input);
 
-        
-        //Aqui va el if comparando todos estos bool y
-        // el que sea true asigna el token (string) a la variable type
+        if(reservedEmail){
+            return "EMAIL:";
+        }
+        if(reservedPhone){
+            return "TELEFONO:";
+        }
+        if(reservedName){
+            return "NOMBRE:";
+        }
+        if(name){
+            return "CONTNOMBRE";
+        }
+        if(email){
+            return "CONTEMAIL";
+        }
+        if(telephone){
+            return "CONTTELEFONO";
+        }
+        System.out.println("Papaya con:" + input);
+
         return type;
     }
 }
