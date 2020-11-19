@@ -30,7 +30,7 @@ public class App {
             if(token!=null){
                 tokens.add(new Token(token, palabra));
             }else{
-                System.out.println("ERROR LEXICO");
+                System.out.println("ERROR LÉXICO");
                 tokens = new ArrayList<Token>();
                 break;
             }
