@@ -1,7 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
-
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -24,6 +20,7 @@ public class Lexer {
             this.t = t;
             this.c = c;
         }
+
         public String toString() {
             if(t == Type.CONTNOMBRE) {
                 return c;
@@ -57,7 +54,9 @@ public class Lexer {
     }
 
 
+
     public static Boolean lexEmail(String input) {
+
         String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
                         "(hotmail|gmail|outlook|yahoo)." +
                         "(es|com|net|org|edu)$";
@@ -77,10 +76,8 @@ public class Lexer {
         return matches;
     }
 
-
-    
-
     //Esta funcion se llama para cada palabra del read input que hernan hizo
+
     public String tokenize(String input){
         String type = null;
         Boolean reservedEmail = lexReservedEmail(input);
@@ -109,6 +106,7 @@ public class Lexer {
             return "CONTTELEFONO";
         }
         System.out.println("Papaya con:" + input);
+
         return type;
     }
 }
