@@ -54,10 +54,10 @@ public class Lexer {
     }
 
 
-
     public static Boolean lexEmail(String input) {
 
-        String pattern = "([a-z][a-z|0-9|[_]|[-]]*)@" +
+        String pattern = "([A-z][a-z|0-9|[_]|[-]]*)@" +
+
                         "(hotmail|gmail|outlook|yahoo)." +
                         "(es|com|net|org|edu)$";
         Boolean matches = Pattern.matches(pattern, input);
