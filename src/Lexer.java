@@ -88,13 +88,13 @@ public class Lexer {
         Boolean telephone = lexTelephone(input);
 
         if(reservedEmail){
-            return "EMAIL:";
+            return "EMAIL";
         }
         if(reservedPhone){
-            return "TELEFONO:";
+            return "TELEFONO";
         }
         if(reservedName){
-            return "NOMBRE:";
+            return "NOMBRE";
         }
         if(name){
             return "CONTNOMBRE";
