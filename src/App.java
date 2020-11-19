@@ -30,15 +30,21 @@ public class App {
             if(token!=null){
                 tokens.add(new Token(token, palabra));
             }else{
-                System.out.println("PAPAYA LEXICA");
+                System.out.println("ERROR LÉXICO");
                 tokens = new ArrayList<Token>();
                 break;
             }
         }
         System.out.println("Tokens:");
+        String previous="";
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
+            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+            }
+            previous=token.t;
         }
+        
     }
 }
