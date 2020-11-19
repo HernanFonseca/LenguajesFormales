@@ -36,9 +36,15 @@ public class App {
             }
         }
         System.out.println("Tokens:");
+        String previous;
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
+            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
+                System.out.println("PAPAYA SINTÁCTICA CON EL TOKEN: "+token.t);
+            }
+            previous=token.t;
+        }
         }
     }
 }
