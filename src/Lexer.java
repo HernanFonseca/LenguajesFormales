@@ -91,28 +91,21 @@ public class Lexer {
         Boolean telephone = lexTelephone(input);
 
         if(reservedEmail){
-            System.out.println("REservado Email");
             return "EMAIL:";
-
         }
         if(reservedPhone){
-            System.out.println("Resevrado Phone");
-            return "TELEFONO";
+            return "TELEFONO:";
         }
         if(reservedName){
-            System.out.println("Reservado Nombre");
-            return "NOMBRE";
+            return "NOMBRE:";
         }
         if(name){
-            System.out.println("ContNombre");
             return "CONTNOMBRE";
         }
         if(email){
-            System.out.println("ContEmail");;
             return "CONTEMAIL";
         }
         if(telephone){
-            System.out.println("ContTelefono");
             return "CONTTELEFONO";
         }
         System.out.println("Papaya con:" + input);

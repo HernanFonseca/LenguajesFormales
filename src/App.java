@@ -18,8 +18,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        List<String> palabras=new ArrayList<String>();
-        List<Token> tokens=new ArrayList<Token>();
+        List<String> palabras = new ArrayList<String>();
+        List<Token> tokens = new ArrayList<Token>();
         
         String path ="./test.txt";
         Lexer analizadorLexico = new Lexer();
@@ -35,6 +35,9 @@ public class App {
                 System.out.println("PAPAYA LEXICA");
                 break;
             }
+        }
+        for(Token token : tokens) {
+            System.out.println(token.t);
         }
     }
 }
