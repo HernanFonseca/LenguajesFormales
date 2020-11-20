@@ -18,7 +18,7 @@ public class App {
         List<String> palabras = new ArrayList<String>();
         List<Token> tokens = new ArrayList<Token>();
         
-        String path ="./10.txt";
+        String path ="./9.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
         
@@ -40,17 +40,13 @@ public class App {
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
-            if( (previous.equals("") && token.t.equals("NOMBRE")) ||
-                ((previous.equals("NOMBRE") || previous.equals("CONTNOMBRE")) && token.t.equals("CONTNOMBRE")) ||
-                (previous.equals("CONTNOMBRE") && token.t.equals("EMAIL")) ||
-                (previous.equals("EMAIL") && token.t.equals("CONTEMAIL")) ||
-                (previous.equals("CONTEMAIL") && token.t.equals("TELEFONO")) ||
-                (previous.equals("TELEFONO") && token.t.equals("CONTTELEFONO"))) {
+            if( (previous.equals("") && !token.t.startsWith("CONT")) ||
+                (previous.startsWith("CONT") && !token.t.startsWith("CONT")) ||
+                previous.startsWith(token.t.substring(4)) ) {
             } else {
                 System.out.println("ERROR SINTÁCTICO EN EL TOKEN: " + token.t);
                 break;
             }
-            
             previous = token.t;
         }
     }

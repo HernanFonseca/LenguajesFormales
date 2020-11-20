@@ -42,7 +42,7 @@ public class Lexer {
     }
 
     public static Boolean lexName(String input){
-        String pattern = "[a-z|A-Z]+";
+        String pattern = "[a-z|A-Z]+(\\s[a-z|A-Z]+)*";
         boolean matches = Pattern.matches(pattern, input);
         return matches;
     }
