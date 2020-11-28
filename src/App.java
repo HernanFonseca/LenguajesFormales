@@ -17,11 +17,11 @@ public class App {
 
         List<String> palabras = new ArrayList<String>();
         List<Token> tokens = new ArrayList<Token>();
-        
-        String path ="./9.txt";
+
+        String path ="test.txt";
         Lexer analizadorLexico = new Lexer();
-        ReadFile fileReader = new ReadFile();
-        
+        ReadFile fileReader = new ReadFile();  
+
         palabras = fileReader.ReadTxt(path);
         //System.out.println(palabras);
         for (String palabra : palabras) {
