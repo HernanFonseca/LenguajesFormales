@@ -10,7 +10,7 @@ public class ReadFile{
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
-                palabras=data.split(" ");
+                palabras = data.split("\\s+", 2);
                 for (String palabra : palabras) {
                     input.add(palabra);
                 }

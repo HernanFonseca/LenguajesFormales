@@ -1,6 +1,4 @@
-
-import java.util.regex.*;
-
+//import java.util.regex.*;
 import java.util.*;
 
 public class App {
@@ -14,39 +12,42 @@ public class App {
             this.c = c;
         }
     }
+
     public static void main(String[] args) throws Exception {
 
-            String pattern = "[a-z]{1}[a-z|0-9|_|-]*[@]" + ".*(hotmail|gmail|outlook|yahoo).*{1}[.]" + ".*(es|com|net|org|edu).*{1}";
-            boolean matches = Pattern.matches(pattern, "edulinaro@gmail.com");
-            System.out.println(matches);
-
-
-
-        List<String> palabras=new ArrayList<String>();
-        String path ="./test.txt";
-
+        List<String> palabras = new ArrayList<String>();
+        List<Token> tokens = new ArrayList<Token>();
+        
+        String path ="test.txt";
+        Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
-        palabras=fileReader.ReadTxt(path);
+        
+        palabras = fileReader.ReadTxt(path);
         //System.out.println(palabras);
         for (String palabra : palabras) {
-            String token=analizadorLexico.tokenize(palabra);
-            if(token!=null){
+            String token = analizadorLexico.tokenize(palabra);
+            if(token != null){
                 tokens.add(new Token(token, palabra));
-            }else{
-                System.out.println("PAPAYA LEXICA");
+            } else {
+                System.out.println("ERROR LÉXICO");
                 tokens = new ArrayList<Token>();
                 break;
             }
         }
+
         System.out.println("Tokens:");
-        String previous="";
+        String previous = "";
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
-            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
-                System.out.println("PAPAYA SINTÁCTICA CON EL TOKEN: "+token.t);
+            if( (previous.equals("") && !token.t.startsWith("CONT")) ||
+                (previous.startsWith("CONT") && !token.t.startsWith("CONT")) ||
+                previous.startsWith(token.t.substring(4)) ) {
+            } else {
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: " + token.t);
+                break;
             }
-            previous=token.t;
+            previous = token.t;
         }
     }
 }
