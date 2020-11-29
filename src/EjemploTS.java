@@ -14,6 +14,55 @@ public class EjemploTS
             this.c = c;
         }
     }
+    public method Tabla() 
+    {
+        //EJEMPLOS
+        int opc;
+        String c = "vacio",d ="vacio";
+        String ejemplo[] = {"Nombre:","Gabriel","Mendoza","Correo:","Gablienando","@","hotmail",".com","Telefono","6969","-","6969"};
+        int nejemplo[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+        System.out.println("╔════════════════════╗");
+        System.out.println("║  TABLA DE SIMBOLOS ║");
+        System.out.println("╠════════════════════╣");
+        System.out.println("║   Nombre/Simbolo   ║");
+        System.out.println("╠════════════════════╣");
+        for (int i = 0; i < 12; i++)
+        {
+        System.out.println("║"+ejemplo[i]);
+        }
+        System.out.println("╚════════════════════╝");
+        System.out.println("╔════════════════════╗");
+        System.out.println("║  TABLA DE SIMBOLOS ║");
+        System.out.println("╠════════════════════╣");
+        System.out.println("║     Dirección      ║");
+        System.out.println("╠════════════════════╣");
+        for (int i = 0; i < 12; i++)
+        {
+        System.out.println("║"  +nejemplo[i]);
+        }
+        System.out.println("╚════════════════════╝");
+        System.out.println("╔════════════════════╗");
+        System.out.println("║  TABLA DE SIMBOLOS ║");
+        System.out.println("╠════════════════════╣");
+        System.out.println("║       Tipo         ║");
+        System.out.println("╠════════════════════╣");
+        for (int i = 0; i < 12; i++)
+        {
+        System.out.println("║"+d);
+        }
+        System.out.println("╚════════════════════╝");
+        System.out.println("╔════════════════════╗");
+        System.out.println("║  TABLA DE SIMBOLOS ║");
+        System.out.println("╠════════════════════╣");
+        System.out.println("║       Clave        ║");
+        System.out.println("╠════════════════════╣");
+        for (int i = 0; i < 12; i++)
+        {
+        System.out.println("║"+c);
+        }
+        System.out.println("╚════════════════════╝");
+    }
+
     public static void main(String[] args)  throws Exception 
     {  
         int opc;
