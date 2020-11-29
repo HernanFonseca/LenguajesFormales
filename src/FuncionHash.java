@@ -95,10 +95,10 @@ public String SEARCH_KEY(String content)
 public static void main(String[] args) 
 {
     FuncionHash hash = new FuncionHash(limit);
-    String[] contents = {"20","33","21","10","12","14","56","100"};
+    String[] contents = {"8","7","6","5","4","3","2","1"};
     hash.HASH_FUNCTION(contents, hash.array);
     hash.SHOW_LIST();
-    String search = hash.SEARCH_KEY("10");
+    String search = hash.SEARCH_KEY("2");
     if(search == null)
         System.out.println("Contenido no existente");
 }
