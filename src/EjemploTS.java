@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class EjemploTS 
 {
+    //Esto esta para evitar que los elementos se reestackee cuando vuelvas a llamar "Tablas()"
     int llamados = 0;
     static ArrayList<String> ejemplo = new ArrayList<String>();
     static List<String> palabras = new ArrayList<String>();
@@ -20,15 +21,16 @@ public class EjemploTS
     }
     public void Tabla() 
     {
-        //EJEMPLOS
+        //DE MOMENTO ESTA INDEFINIDO
         String c= "Indefinido",d ="indefinido";
-        //Este contador cuanta las posiciones de los elementos detectados
+        //Este contador da la posiciones de los elementos detectados,esta a "-1" porque tome en cuenta la posicion 0 ya que uso listas.
         int contador = -1;
         System.out.println("╔════════════════════╗");
         System.out.println("║  TABLA DE SIMBOLOS ║");
         System.out.println("╠════════════════════╣");
         System.out.println("║   Nombre/Simbolo   ║");
         System.out.println("╠════════════════════╣");
+        //Obtener en pantalla todos los datos del fichero
         for (int i = 0; i < palabras.size(); i++)
         {
         System.out.println("║"+palabras.get(i));
@@ -39,6 +41,7 @@ public class EjemploTS
         System.out.println("╠════════════════════╣");
         System.out.println("║     Dirección      ║");
         System.out.println("╠════════════════════╣");
+        //Establecer la posicion de el elemento 
         for (int i = 0; i < palabras.size(); i++)
         {
             contador = contador + 1;
@@ -70,6 +73,7 @@ public class EjemploTS
     {
 
     }
+    //Esto tiene un uso mas adelante para comprobar si la palabra ingresaba existe en el arreglo actual
     public static int existeEnArreglo(String[] arreglo, String busqueda) 
     {
         for (int x = 0; x < arreglo.length; x++) 
@@ -98,23 +102,25 @@ public class EjemploTS
             System.out.println("Que desea realizar?");
             System.out.println("1.Insertar en la tabla");
             System.out.println("2.Buscar en la tabla");
-            System.out.println("3.Comparar elmentos en la tabla");
+            System.out.println("3.Comparar elementos en la tabla");
             System.out.println("4. Ver la tabla");
+            System.out.println("5. Salir");
             Scanner teclado = new Scanner(System.in); 
             int opc = teclado.nextInt();
             switch(opc)
             {
                 case 1:
-                System.out.println("*********INSERTAR**************");
+                System.out.println("*********************INSERTAR*********************");
                 System.out.println("Porfavor ingresa el dato que desee ingresar:");
                 dato = teclado.next();
                 palabras.add(dato);
                 //Aqui faltaria analizar el dato reconocido y verificarlo contra el analizador lexico para verificar el lexema dentro de la tabla
+                System.out.println("*************************************************");
                 break;
 
                 case 2:
                 String elemento2;
-                System.out.println("**********BUSCAR**************");
+                System.out.println("*********************BUSCAR*********************");
                 String[] ArEjemplo2 = new String[palabras.size()];
                 ArEjemplo2 = palabras.toArray(ArEjemplo2);
                 System.out.println("Porfavor ingrese un elemento que desea buscar dentro de la tabla");
@@ -129,14 +135,15 @@ public class EjemploTS
                 {
 			    System.out.println("El elemento existe en la posición: " + posicionDeElementoBuscado);
                 }
+                System.out.println("*************************************************");
                 break;
 
                 case 3:
                 String elemento3;
-                System.out.println("*********COMPARAR**************");
+                System.out.println("*********************COMPARAR*********************");
                 String[] ArEjemplo3 = new String[palabras.size()];
                 ArEjemplo3 = palabras.toArray(ArEjemplo3);
-                System.out.println("Porfavor ingrese un elemento para comprarlo dentro de la tabla");
+                System.out.println("Porfavor ingrese un elemento para compararlo dentro de la tabla");
                 elemento3 = teclado.next();
                 String ejemploComparar = elemento3 ;
                 for(int posicion = 0; posicion<palabras.size(); posicion++)
@@ -147,9 +154,10 @@ public class EjemploTS
                  }
                  else
                  {
-                 System.out.println("Elemento: "+ArEjemplo3[posicion]+" no es comun con ningun elemento de la tabla");  
+                 System.out.println("Elemento: "+ArEjemplo3[posicion]+" no es comun con elemento ingresado");  
                  }  
                 } 
+                System.out.println("**************************************************");
                 break;
 
                 case 4:
