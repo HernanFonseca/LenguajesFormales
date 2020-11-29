@@ -34,7 +34,6 @@ public class App {
                 break;
             }
         }
-
         System.out.println("Tokens:");
         String previous = "";
         for(Token token : tokens) {
