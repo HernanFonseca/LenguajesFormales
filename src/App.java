@@ -30,7 +30,7 @@ public class App {
                 tokens.add(new Token(token, item));
             } else {
                 //// ERROR LÉXICO
-                new LexicException(path, item.linea, item.index, fileReader.getContent(item.linea-1)); // se puede agregar el parámetro de # linea
+                new LexicException(path, item.linea, item.index, fileReader.getContent(item.linea-1));
                 System.exit(1); // para que no imprima lo que sigue
             }
         }
@@ -45,7 +45,7 @@ public class App {
                 previous.startsWith(token.t.substring(4)) ) {
             } else {
                 //// ERROR SINTÁCTICO
-                new SintaxException(path, token.p.linea, token.p.index, fileReader.getContent(token.p.linea-1)); // se puede agregar el parámetro de # linea
+                new SintaxException(path, token.p.linea, token.p.index, fileReader.getContent(token.p.linea-1));
                 System.exit(1); // para que no siga
             }
             previous = token.t;
