@@ -53,6 +53,12 @@ public class EjemploTS
         System.out.println("╠════════════════════╣");
         System.out.println("║       Tipo         ║");
         System.out.println("╠════════════════════╣");
+        //Tengo un asunto que resolver con el tipo les cuento, miren al momento de recoger los datos del fichero la lectura se realizar pero... Hay elementos como
+        // al escribir el correo electronico es toma "CorreoEjemplo@gmail.com" como un todo, el objetivo es obtener:
+        //    "CorreoEjemplo" ;         "@"        ;       "gmail"      ;      ".com"
+        //ejemplo.add(Usuario);ejemplo.add(Simbolo);ejemplo.add(Dominio);ejemplo.add(Tipo);
+        // Para solucionarlo tengo dos ideas cambiar la manera en la que leemos el fichero (Que es la mas tediosa, o eso creo yo)
+        // o comprarla con una lista de simbolos,numeros,tipos,dominios etc etc. Necesito entender un poco mas la lectura.
         for (int i = 0; i < palabras.size(); i++)
         {
         System.out.println("║"+c);
@@ -63,6 +69,7 @@ public class EjemploTS
         System.out.println("╠════════════════════╣");
         System.out.println("║       Clave        ║");
         System.out.println("╠════════════════════╣");
+        //De momento Edwin es el que esta buscando la manera de establecer el HASH, estamos buscando adaptar el programa para arreglos multidimensionales
         for (int i = 0; i < palabras.size(); i++)
         {
         System.out.println("║"+d);
@@ -99,6 +106,7 @@ public class EjemploTS
         Obtener.Tabla();
         while (rep == 1)
         {
+            //Interfaz de usuario
             System.out.println("Que desea realizar?");
             System.out.println("1.Insertar en la tabla");
             System.out.println("2.Buscar en la tabla");
@@ -109,6 +117,7 @@ public class EjemploTS
             int opc = teclado.nextInt();
             switch(opc)
             {
+                //Inserta un elemento nuevo a la tabla
                 case 1:
                 System.out.println("*********************INSERTAR*********************");
                 System.out.println("Porfavor ingresa el dato que desee ingresar:");
@@ -117,7 +126,8 @@ public class EjemploTS
                 //Aqui faltaria analizar el dato reconocido y verificarlo contra el analizador lexico para verificar el lexema dentro de la tabla
                 System.out.println("*************************************************");
                 break;
-
+                
+                //Busca un elemento dentro de la tabla
                 case 2:
                 String elemento2;
                 System.out.println("*********************BUSCAR*********************");
@@ -138,6 +148,7 @@ public class EjemploTS
                 System.out.println("*************************************************");
                 break;
 
+                //Realiza una comparacion entre un elemento ingresado y todos los demas dentro de la tabla
                 case 3:
                 String elemento3;
                 System.out.println("*********************COMPARAR*********************");
