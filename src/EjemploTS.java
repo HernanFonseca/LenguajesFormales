@@ -6,6 +6,7 @@ public class EjemploTS
     int llamados = 0;
     static ArrayList<String> ejemplo = new ArrayList<String>();
     static List<String> palabras = new ArrayList<String>();
+    //static Lexer analizadorLexico = new Lexer();
     public static class Token 
     {
         public final String t;
@@ -17,12 +18,12 @@ public class EjemploTS
             this.c = c;
         }
     }
-    public  void Tabla() 
+    public void Tabla() 
     {
         //EJEMPLOS
         String c= "Indefinido",d ="indefinido";
         //Este contador cuanta las posiciones de los elementos detectados
-        int contador = 0;
+        int contador = -1;
         System.out.println("╔════════════════════╗");
         System.out.println("║  TABLA DE SIMBOLOS ║");
         System.out.println("╠════════════════════╣");
@@ -65,6 +66,10 @@ public class EjemploTS
         }
         System.out.println("╚════════════════════╝");
     }
+    public void IdTipo()
+    {
+
+    }
     public static int existeEnArreglo(String[] arreglo, String busqueda) 
     {
         for (int x = 0; x < arreglo.length; x++) 
@@ -82,7 +87,6 @@ public class EjemploTS
         int rep= 1;
         List<Token> tokens = new ArrayList<Token>();  
         String path ="test.txt";
-        Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();  
         palabras = fileReader.ReadTxt(path);
         //System.out.println(palabras);
@@ -111,12 +115,12 @@ public class EjemploTS
                 case 2:
                 String elemento2;
                 System.out.println("**********BUSCAR**************");
-                String[] ArEjemplo = new String[palabras.size()];
-                ArEjemplo = ejemplo.toArray(ArEjemplo);
+                String[] ArEjemplo2 = new String[palabras.size()];
+                ArEjemplo2 = palabras.toArray(ArEjemplo2);
                 System.out.println("Porfavor ingrese un elemento que desea buscar dentro de la tabla");
                 elemento2 = teclado.next();
                 String ejemploBuscado = elemento2 ;
-                int posicionDeElementoBuscado  = existeEnArreglo(ArEjemplo,ejemploBuscado);
+                int posicionDeElementoBuscado  = existeEnArreglo(ArEjemplo2,ejemploBuscado);
                 if (posicionDeElementoBuscado == -1) 
                 {
 			        System.out.println("El elemento NO existe en el arreglo");
@@ -130,20 +134,20 @@ public class EjemploTS
                 case 3:
                 String elemento3;
                 System.out.println("*********COMPARAR**************");
-                String[] ArEjemplo2 = new String[palabras.size()];
-                ArEjemplo2 = ejemplo.toArray(ArEjemplo2);
+                String[] ArEjemplo3 = new String[palabras.size()];
+                ArEjemplo3 = palabras.toArray(ArEjemplo3);
                 System.out.println("Porfavor ingrese un elemento para comprarlo dentro de la tabla");
                 elemento3 = teclado.next();
                 String ejemploComparar = elemento3 ;
-                for(int posicion = 0; posicion<=11; posicion++)
+                for(int posicion = 0; posicion<palabras.size(); posicion++)
                 {
-                 if(ArEjemplo2[posicion].equals(ejemploComparar))
+                 if(ArEjemplo3[posicion].equals(ejemploComparar))
                  {
-                 System.out.println("Elemento en comun es: "+ArEjemplo2[posicion]);
+                 System.out.println("Elemento en comun es: "+ArEjemplo3[posicion]);
                  }
                  else
                  {
-                 System.out.println("Elemento: "+ArEjemplo2[posicion]+" no es comun con ningun elemento de la tabla");  
+                 System.out.println("Elemento: "+ArEjemplo3[posicion]+" no es comun con ningun elemento de la tabla");  
                  }  
                 } 
                 break;
