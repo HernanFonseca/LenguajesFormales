@@ -153,7 +153,7 @@ public class EjemploTS
                 break;
 
                 default:
-                System.out.println("Nos pillamos pues");
+                System.out.println("Nos pillamos pues!");
                 break;
             }
         if (opc == 5)
