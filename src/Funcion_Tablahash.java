@@ -6,22 +6,25 @@ import java.util.List;
 
 import proyect.App.Token;
 
-public class Funcion_Tablahash {
+public class Funcion_Tablahash 
+{
 	
 	String [] array;
 	int SizeList;
 	int location;
 	static int limit = 7;
 	
-//	CONSTRUCTOR
-	public Funcion_Tablahash(int size) {	
+     //	CONSTRUCTOR
+	public Funcion_Tablahash(int size) 
+	{	
 		SizeList = size; 
 		array = new String[size]; 
 		Arrays.fill(array, "-1");											//Permite rellenar la lista con valores iniciales en este caso -1
 	}
 	
-//  HASH METHOD
-	public void HASH_FUNCTION(String[][] arrayString, String[] array) {
+    //  HASH METHOD
+	public void HASH_FUNCTION(String[][] arrayString, String[] array) 
+	{
 		int i,j;
 		String content = ""; 
 		String [][]element = new String[7][3];									//creación de la variable local
@@ -45,15 +48,16 @@ public class Funcion_Tablahash {
 			array[posArray] = element[i][0];
 		}
 	}
-	
 
-//SEARCH
-	public String SEARCH_KEY(String content) {
+     //SEARCH
+	public String SEARCH_KEY(String content) 
+	{
 		int pasArray = Math.round(((float) content.charAt(0) + (float) content.charAt(content.length()-1))% array.length);
 		int n=0;
-		while (array[pasArray]!="-1") {
-			
-			if ((array[pasArray]).equals(content)) {
+		while (array[pasArray]!="-1") 
+		{	
+			if ((array[pasArray]).equals(content)) 
+			{
 				System.out.println("\nContenido: " + content + "  Ubicación: " + pasArray);
 				return array[pasArray];
 			}
@@ -65,44 +69,48 @@ public class Funcion_Tablahash {
 		}
 		return null; 
 	}
-	
-//	MAIN	
-	public String RECEIVE_DATA (String [] Token) {
-		int i=0, j=0;
+		
+   //CODIGO DEL RECEIVE_DATA----------- TABLA DE SÍMBOLOS
+   public String RECEIVE_DATA (String [] Token) 
+   {
+	   int i=0, j=0;
+	   
+	   List<Token> tokens = new ArrayList<Token>();
+	   Funcion_Tablahash hash = new Funcion_Tablahash(limit);
+	   Lexer analizadorLexico = new Lexer();
+	   String contents[][];
+	   contents = new String[7][3];
 
-		List<Token> tokens = new ArrayList<Token>();
-		Funcion_Tablahash hash = new Funcion_Tablahash(limit);
-		Lexer analizadorLexico = new Lexer();
-		String contents[][];
-		contents = new String[7][3];
-
-		for (i = 0; i<contents.length; i++) {					//Asignación de valores
-			for(j = 0; j<contents[i].length; j++) {
+	   for (i = 0; i<contents.length; i++)                     //Asignación de valores
+	   {					
+			for(j = 0; j<contents[i].length; j++) 
+			{
 				
-				if(j==0) {
+				if(j==0) 
+				{
 					contents[i][j] = Token[i];					//Nombre
 				}
-				else if(j==1){
-		            String token=analizadorLexico.tokenize(Token[i]);
-		            if(token!=null){
-		            	contents[i][j]=token;					//Valor tipo
-		            }else{
-		                System.out.println("ERROR LÉXICO");
-		                tokens = new ArrayList<Token>();
-		                break;
-		            }
+				else if(j==1)
+				{
+					String token=analizadorLexico.tokenize(Token[i]);
+					//if(token!=null){
+					contents[i][j]=token;					//Valor tipo
+					/*}else{
+					System.out.println("ERROR LÉXICO");
+					tokens = new ArrayList<Token>();
+					break;
+					}*/
 				}
-				else if(j==2) {
+				else if(j==2) 
+				{
 					contents[i][j] = Integer.toString(i+1) ;
 				}
 			}
 		}
-		
-		hash.HASH_FUNCTION(contents, hash.array);
-		String search = hash.SEARCH_KEY("Nombre:");
-		if(search == null)
-			System.out.println("Contenido no existente!");
-		return null;
-	}
-	
+	hash.HASH_FUNCTION(contents, hash.array);
+	String search = hash.SEARCH_KEY("Nombre:");
+	if(search == null)
+		System.out.println("Contenido no existente");
+	return null;
+   	}	
 }
