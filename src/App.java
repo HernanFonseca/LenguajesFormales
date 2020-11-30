@@ -4,11 +4,13 @@ import java.util.*;
 
 public class App 
 {
-    public static class Token {
+    public static class Token 
+    {
         public final String t;
         public final String c; // contents
 
-        public Token(String t, String c) {
+        public Token(String t, String c) 
+        {
             this.t = t;
             this.c = c;
         }

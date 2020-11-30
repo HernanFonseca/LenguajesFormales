@@ -29,9 +29,11 @@ public class Funcion_Tablahash
 		String content = ""; 
 		String [][]element = new String[7][3];									//creación de la variable local
 		System.out.println("Almacenado de datos a la tabla de símbolos\n\n");
-		for (i = 0; i < arrayString.length; i ++) {								//Recorrido por filas
+		for (i = 0; i < arrayString.length; i ++)                               //Recorrido por filas
+		{								
 
-			for (j = 0; j < arrayString[i].length; j++){						//asignación, recorrido por columnas
+			for (j = 0; j < arrayString[i].length; j++)                         //asignación, recorrido por columnas
+			{						
 				element[i][j] = arrayString[i][j];								//principal
 				content = element[i][0];										//para la clave
 			}
@@ -39,7 +41,8 @@ public class Funcion_Tablahash
 			int posArray = Math.round(((float) content.charAt(0) + (float) content.charAt(content.length()-1))% array.length);				//Obtención de la clave
 			System.out.println("CLAVE: " + posArray + " \tNOMBRE/SÍMBOLO: " + element[i][0] + "\t\t\tTIPO: " + element[i][1] + "\t\tINSTANCIA: " + element[i][2]);
 
-				while(array[posArray] != "-1"){								//	COLISIONS MANAGEMENT
+			while(array[posArray] != "-1")
+			{								//	COLISIONS MANAGEMENT
 				posArray++;
 				System.out.println("\tColision en Indice: "+(posArray-1)+" se asignaría al índice: "+posArray);
 				posArray%=SizeList;											//Saca el módulo para la proxima clave
