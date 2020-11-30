@@ -1,7 +1,9 @@
+//package project;
 //import java.util.regex.*;
 import java.util.*;
 
 public class App {
+
 
     public static class Token {
         public final String t;
@@ -15,38 +17,46 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        List<String> palabras = new ArrayList<String>();
+        List<String> palabras = new ArrayList<String>();										
         List<Token> tokens = new ArrayList<Token>();
 
-        String path ="test.txt";
+        String path ="C:/Users/Edwin/eclipse-workspace/project/test.txt";
         Lexer analizadorLexico = new Lexer();
-        ReadFile fileReader = new ReadFile();  
-
-        palabras = fileReader.ReadTxt(path);
+        ReadFile fileReader = new ReadFile();
+        Funcion_Tablahash TablaHash = new Funcion_Tablahash(1);
+        palabras=fileReader.ReadTxt(path);
+ //________________________________________________________________________________       
+        String[] ListaTokens = new String[palabras.size()];										//String
+        ListaTokens = palabras.toArray(ListaTokens);											//Pasar la lista a un array
+        TablaHash.RECEIVE_DATA(ListaTokens);													//Enviar datos
+ //________________________________________________________________________________          
         //System.out.println(palabras);
-        for (String palabra : palabras) {
-            String token = analizadorLexico.tokenize(palabra);
-            if(token != null){
+        /*for (String palabra : palabras) {
+            String token=analizadorLexico.tokenize(palabra);
+            if(token!=null){
                 tokens.add(new Token(token, palabra));
-            } else {
+            }else{
                 System.out.println("ERROR LÉXICO");
                 tokens = new ArrayList<Token>();
                 break;
             }
-        }
-        System.out.println("Tokens:");
-        String previous = "";
+        }*/
+        
+        //System.out.println("\nTokens:");
+        String previous="";
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.c);
             System.out.println("");
-            if( (previous.equals("") && !token.t.startsWith("CONT")) ||
-                (previous.startsWith("CONT") && !token.t.startsWith("CONT")) ||
-                previous.startsWith(token.t.substring(4)) ) {
-            } else {
-                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: " + token.t);
+            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
                 break;
             }
-            previous = token.t;
+            if(previous.equals("") && token.t.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+                break;
+            }
+            previous=token.t;
         }
+        
     }
 }

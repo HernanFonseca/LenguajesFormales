@@ -7,7 +7,8 @@ public class EjemploTS
     int llamados = 0;
     static ArrayList<String> ejemplo = new ArrayList<String>();
     static List<String> palabras = new ArrayList<String>();
-    //static Lexer analizadorLexico = new Lexer();
+    static Lexer analizadorLexico = new Lexer();
+    List<Token> tokens = new ArrayList<Token>(); 
     public static class Token 
     {
         public final String t;
@@ -61,7 +62,7 @@ public class EjemploTS
         // o comprarla con una lista de simbolos,numeros,tipos,dominios etc etc. Necesito entender un poco mas la lectura.
         for (int i = 0; i < palabras.size(); i++)
         {
-        System.out.println("║"+c);
+        //System.out.println("║"+tokens.get());
         }
         System.out.println("╚════════════════════╝");
         System.out.println("╔════════════════════╗");
@@ -75,10 +76,6 @@ public class EjemploTS
         System.out.println("║"+d);
         }
         System.out.println("╚════════════════════╝");
-    }
-    public void IdTipo()
-    {
-
     }
     //Esto tiene un uso mas adelante para comprobar si la palabra ingresaba existe en el arreglo actual
     public static int existeEnArreglo(String[] arreglo, String busqueda) 
@@ -95,9 +92,8 @@ public class EjemploTS
     public static void main(String[] args)  
     {  
         String dato;
-        int rep= 1;
-        List<Token> tokens = new ArrayList<Token>();  
-        String path ="test.txt";
+        int rep= 1; 
+        String path ="1.txt";
         ReadFile fileReader = new ReadFile();  
         palabras = fileReader.ReadTxt(path);
         //System.out.println(palabras);
