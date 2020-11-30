@@ -101,7 +101,7 @@ public class Funcion_Tablahash {
 		hash.HASH_FUNCTION(contents, hash.array);
 		String search = hash.SEARCH_KEY("Nombre:");
 		if(search == null)
-			System.out.println("Contenido no existente");
+			System.out.println("Contenido no existente!");
 		return null;
 	}
 	

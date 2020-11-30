@@ -34,7 +34,7 @@ public class EjemploTS
         //Obtener en pantalla todos los datos del fichero
         for (int i = 0; i < palabras.size(); i++)
         {
-        System.out.println("║"+palabras.get(i));
+            System.out.println("║"+palabras.get(i));
         }
         System.out.println("╚════════════════════╝");
         System.out.println("╔════════════════════╗");
@@ -73,7 +73,7 @@ public class EjemploTS
         //De momento Edwin es el que esta buscando la manera de establecer el HASH, estamos buscando adaptar el programa para arreglos multidimensionales
         for (int i = 0; i < palabras.size(); i++)
         {
-        System.out.println("║"+d);
+            System.out.println("║"+d);
         }
         System.out.println("╚════════════════════╝");
     }
