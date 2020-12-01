@@ -1,4 +1,3 @@
-
 //import java.util.regex.*;
 import java.util.*;
 
@@ -16,18 +15,18 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        
         List<String> palabras = new ArrayList<String>();										
         List<Token> tokens = new ArrayList<Token>();
 
-        String path ="./4.txt";
+        String path ="test.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
-
         palabras=fileReader.ReadTxt(path);
-        //System.out.println(palabras);              
-        for (String palabra : palabras) {               //CAMBIO
-            String token = analizadorLexico.tokenize(palabra);
+         
+        
+        for (String palabra : palabras) {
+        	//System.out.println("Palabra: "+ palabra);
+            String token=analizadorLexico.tokenize(palabra);
             if(token!=null){
                 tokens.add(new Token(token, palabra));
             }else{
@@ -35,12 +34,12 @@ public class App {
                 tokens = new ArrayList<Token>();
                 break;
             }
-        }                                               //FIN  DE CAMBIO
+        }
         
         System.out.println("\nTokens:");
         String previous="";
         for(Token token : tokens) {
-            System.out.print(token.t + ": " + token.c);         //CAMBIO
+            System.out.print(token.t + ": " + token.c);
             System.out.println("");
             if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
                 System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
@@ -51,7 +50,7 @@ public class App {
                 break;
             }
             previous=token.t;
-        }                                                      //FIN DE CAMBIO
+        }
 												//Enviar datos
     }
 }

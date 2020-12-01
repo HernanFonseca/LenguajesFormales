@@ -95,7 +95,6 @@ public class Tabla_Hash {
 		            	contents[i][j]="contenidoMail";
 		            else if (Tipo =="CONTTELEFONO") 
 		            	contents[i][j]="contenidoNum";
-		            break;
 				}
 				else if(j==2) {
 					contents[i][j] = String.valueOf(a+1) ;
