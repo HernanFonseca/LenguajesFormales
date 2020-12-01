@@ -57,7 +57,7 @@ public class Lexer {
 
     public String tokenize(String input){
         String type = null;
-        Tabla_Hash TablaHash = new Tabla_Hash(1);
+        Tabla_Hash TablaHash = new Tabla_Hash();
         Boolean reservedEmail = lexReservedEmail(input);
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
@@ -89,8 +89,8 @@ public class Lexer {
         	TablaHash.RECEIVE_DATA(input, "CONTTELEFONO");
             return "CONTTELEFONO";
         }
-        System.out.println("ERROR LÉXICO EN: " + input);
-
+        //System.out.println("ERROR LÉXICO EN: " + input);
+        TablaHash.RECEIVE_DATA(input, "NULL");
         return type;
     }
 }
