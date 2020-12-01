@@ -62,18 +62,18 @@ public class PrincipalFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,label,"ERROR",JOptionPane.WARNING_MESSAGE);
     }
 
-    public static void mostrarTablaSimbolos(){
-        String[][] content; // Aquí igualan a su matriz con el contenido
-        String columns[] = { "Hash", "Contenido", "Token", "Indice"};
-        JTable table = new JTable(content, columns);
-        Font font = new Font("Verdana", Font.PLAIN, 12);
-        table.setFont(font);
-        table.setRowHeight(30);
-        JFrame frame = new JFrame();
-        frame.setSize(600, 400);
-        frame.add(new JScrollPane(table));
-        frame.setVisible(true);
-    }
+    // public static void mostrarTablaSimbolos(){
+    //     String[][] content; // Aquí igualan a su matriz con el contenido
+    //     String columns[] = { "Hash", "Contenido", "Token", "Indice"};
+    //     JTable table = new JTable(content, columns);
+    //     Font font = new Font("Verdana", Font.PLAIN, 12);
+    //     table.setFont(font);
+    //     table.setRowHeight(30);
+    //     JFrame frame = new JFrame();
+    //     frame.setSize(600, 400);
+    //     frame.add(new JScrollPane(table));
+    //     frame.setVisible(true);
+    // }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,7 +121,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         LabelIngresar1.setText("ó");
 
         txtArea.setColumns(20);
-        txtArea.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        txtArea.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtArea.setRows(5);
         txtInfo.setViewportView(txtArea);
 
