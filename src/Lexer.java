@@ -42,7 +42,7 @@ public class Lexer {
     }
 
     public static Boolean lexName(String input){
-        String pattern = "[a-z|A-Z]+(\\s[a-z|A-Z]+)*";
+        String pattern = "[a-z|A-Z]+";
         boolean matches = Pattern.matches(pattern, input);
         return matches;
     }
@@ -57,6 +57,7 @@ public class Lexer {
 
     public String tokenize(String input){
         String type = null;
+        Tabla_Hash TablaHash = new Tabla_Hash(1);
         Boolean reservedEmail = lexReservedEmail(input);
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
@@ -65,21 +66,27 @@ public class Lexer {
         Boolean telephone = lexTelephone(input);
 
         if(reservedEmail){
+        	TablaHash.RECEIVE_DATA(input, "EMAIL");
             return "EMAIL";
         }
         if(reservedPhone){
+        	TablaHash.RECEIVE_DATA(input, "TELEFONO");
             return "TELEFONO";
         }
         if(reservedName){
+        	TablaHash.RECEIVE_DATA(input, "NOMBRE");
             return "NOMBRE";
         }
         if(name){
+        	TablaHash.RECEIVE_DATA(input, "CONTNOMBRE");
             return "CONTNOMBRE";
         }
         if(email){
+        	TablaHash.RECEIVE_DATA(input, "CONTEMAIL");
             return "CONTEMAIL";
         }
         if(telephone){
+        	TablaHash.RECEIVE_DATA(input, "CONTTELEFONO");
             return "CONTTELEFONO";
         }
         System.out.println("ERROR LÉXICO EN: " + input);
