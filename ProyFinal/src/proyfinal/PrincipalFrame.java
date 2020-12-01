@@ -93,6 +93,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         txtArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Validación");
 
         LabelBienvenido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LabelBienvenido.setText("Bienvenido");
@@ -100,6 +101,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         LabelIngresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LabelIngresar.setText("Ingrese los datos");
 
+        btnvalidar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnvalidar.setText("Validar");
         btnvalidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +109,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
             }
         });
 
+        btnSel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSel.setText("Examinar archivo txt");
         btnSel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +121,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         LabelIngresar1.setText("ó");
 
         txtArea.setColumns(20);
+        txtArea.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtArea.setRows(5);
         txtInfo.setViewportView(txtArea);
 
@@ -128,29 +132,29 @@ public class PrincipalFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(LabelBienvenido))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(LabelBienvenido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(btnSel)))
                 .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LabelIngresar)
-                        .addGap(111, 111, 111))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LabelIngresar1)
-                        .addGap(164, 164, 164))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(btnvalidar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(LabelIngresar1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(btnvalidar)))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSel)
-                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,15 +163,15 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addComponent(LabelBienvenido)
                 .addGap(7, 7, 7)
                 .addComponent(LabelIngresar)
-                .addGap(18, 18, 18)
-                .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(LabelIngresar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSel)
-                .addGap(18, 18, 18)
-                .addComponent(btnvalidar)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(btnSel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnvalidar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -176,12 +180,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
     private void btnvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidarActionPerformed
         // TODO add your handling code here:
-         List<Palabra> palabras = new ArrayList<>();
+        List<Palabra> palabras = new ArrayList<>();
         List<Token> tokens = new ArrayList<Token>();
         
         //String path ="./4.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
+        
+        boolean valid = true;
         
         palabras = fileReader.ReadTxt(txtArea.getText());
         //System.out.println(palabras);
@@ -193,8 +199,9 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 //// ERROR LÉXICO
                 LexicException(item.linea, item.index,
                                 fileReader.getContent(item.linea - 1));
-                return;
-//System.exit(1); // para que no imprima lo que sigue
+                valid = false;
+                //return;
+                //System.exit(1); // para que no imprima lo que sigue
             }
         }
         
@@ -211,12 +218,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 SintaxException(token.p.linea, token.p.index,
                                 fileReader.getContent(token.p.linea - 1));
                 //System.exit(1); // para que no siga
-                return;
+                //return;
+                valid = false;
             }
             previous = token.t;
         }
         
-        JOptionPane.showMessageDialog(null, "Validado");
+        if(valid) { JOptionPane.showMessageDialog(null, "Validado"); }
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     
