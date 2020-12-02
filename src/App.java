@@ -3,6 +3,7 @@ import java.util.*;
 
 public class App {
 
+
     public static class Token {
         public final String t;
         public final Palabra p;
@@ -13,42 +14,43 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
-
-        List<Palabra> palabras = new ArrayList<>();
+    public static void main(String[] args) throws Exception {
+        List<String> palabras = new ArrayList<String>();										
         List<Token> tokens = new ArrayList<Token>();
-        
-        String path ="./4.txt";
+
+        String path ="test.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
+        palabras=fileReader.ReadTxt(path);
+         
         
-        palabras = fileReader.ReadTxt(path);
-        //System.out.println(palabras);
-        for (Palabra item : palabras) {
-            String token = analizadorLexico.tokenize(item.palabra);
-            if(token != null){
-                tokens.add(new Token(token, item));
-            } else {
-                //// ERROR LÉXICO
-                new LexicException(path, item.linea, item.index, fileReader.getContent(item.linea-1));
-                System.exit(1); // para que no imprima lo que sigue
+        for (String palabra : palabras) {
+        	//System.out.println("Palabra: "+ palabra);
+            String token=analizadorLexico.tokenize(palabra);
+            if(token!=null){
+                tokens.add(new Token(token, palabra));
+            }else{
+                System.out.println("ERROR LÉXICO");
+                tokens = new ArrayList<Token>();
+                break;
             }
         }
-
-        System.out.println("Tokens:");
-        String previous = "";
+        
+        System.out.println("\nTokens:");
+        String previous="";
         for(Token token : tokens) {
             System.out.print(token.t + ": " + token.p.palabra);
             System.out.println("");
-            if( (previous.equals("") && !token.t.startsWith("CONT")) ||
-                (previous.startsWith("CONT") && !token.t.startsWith("CONT")) ||
-                previous.startsWith(token.t.substring(4)) ) {
-            } else {
-                //// ERROR SINTÁCTICO
-                new SintaxException(path, token.p.linea, token.p.index, fileReader.getContent(token.p.linea-1));
-                System.exit(1); // para que no siga
+            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+                break;
             }
-            previous = token.t;
+            if(previous.equals("") && token.t.startsWith("CONT")){
+                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
+                break;
+            }
+            previous=token.t;
         }
+												//Enviar datos
     }
 }
