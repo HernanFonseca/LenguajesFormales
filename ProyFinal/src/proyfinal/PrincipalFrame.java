@@ -63,14 +63,15 @@ public class PrincipalFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,label,"ERROR",JOptionPane.WARNING_MESSAGE);
     }
 
-    public static void LexicException(int linea, int index, String palabra) {
+    public static void LexicException(int linea, int index, String palabra, String detalle) {
         String message = "<html><pre>Error en la linea " + linea + "," + index + ":";
         message += "<br>" + palabra + "<br>" + repeat(index) + "^";
-        message += "<br>Error léxico: palabra inválida</html>";
+        message += "<br>Error léxico:"+ detalle+ "</html>";
         JLabel label = new JLabel(message);
         label.setFont(new Font("Consolas", Font.BOLD, 14));
         JOptionPane.showMessageDialog(null,label,"ERROR",JOptionPane.WARNING_MESSAGE);
     }
+
     
 
 
@@ -207,11 +208,10 @@ public void limpiarTabla(JTable tabla){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidarActionPerformed
-        // TODO add your handling code here:
         Tabla_Hash limpiar = new Tabla_Hash(1);//<----------------Limpiar matriz orden[][]
         limpiar.ClearOrden();
         limpiarTabla(table);
-        int pass = 0;
+        Boolean valid=true;
         List<Palabra> palabras = new ArrayList<>();
         List<Token> tokens = new ArrayList<Token>();
         
@@ -223,45 +223,47 @@ public void limpiarTabla(JTable tabla){
         //System.out.println(palabras);
         for (Palabra item : palabras) {
             String token = analizadorLexico.tokenize(item.palabra);
+            String detalle="";
             if(token != null){
                 tokens.add(new Token(token, item));
             } else {
                 //// ERROR LÉXICO
+                if(item.palabra.contains("@"))
+                    detalle = "El email debe seguir la estructura \"ejemplo@dominio.com\" y las extensiones válidas son:<br>.com<br>.es<br>.net<br>.org<br>.edu";
+                else if(item.palabra.matches("[0-9]+"))
+                    detalle = "El número de teléfono debe seguir la estructura \"6###-####\"";
                 LexicException(item.linea, item.index,
-                                fileReader.getContent(item.linea - 1));
-                pass = 1;
+                                fileReader.getContent(item.linea - 1), detalle);
+                valid = false;
                 //return;
-//System.exit(1); // para que no imprima lo que sigue
+                //System.exit(1); // para que no imprima lo que sigue
             }
         }
         
         System.out.println("Tokens:");
-        if(pass==0)
-        {
+        if(valid){
+            System.out.println("Tokens:");
             String previous = "";
-            for (Token token : tokens) 
-            {
+            for (Token token : tokens) {
                 System.out.print(token.t + ": " + token.p.palabra);
                 System.out.println("");
                 if ((previous.equals("") && !token.t.startsWith("CONT"))
-                    || (previous.startsWith("CONT") && !token.t.startsWith("CONT"))
-                    || previous.startsWith(token.t.substring(4))) 
-                {
-                } 
-                else 
-                {
-                //// ERROR SINTÁCTICO
-                SintaxException(token.p.linea, token.p.index,
-                                fileReader.getContent(token.p.linea - 1));
-                //System.exit(1); // para que no siga
-                return;
+                        || (previous.startsWith("CONT") && !token.t.startsWith("CONT"))
+                        || previous.startsWith(token.t.substring(4))) {
+                } else {
+                    //// ERROR SINTÁCTICO
+                    
+                    SintaxException(token.p.linea, token.p.index,
+                                    fileReader.getContent(token.p.linea - 1));
+                    //System.exit(1); // para que no siga
+                    //return;
+                    valid = false;
                 }
-            previous = token.t;
+                previous = token.t;
             }
         }
-        pass = 0;
         
-        JOptionPane.showMessageDialog(null, "Validado");
+        if(valid) { JOptionPane.showMessageDialog(null, "Validado"); }
     }//GEN-LAST:event_btnvalidarActionPerformed
 
     
