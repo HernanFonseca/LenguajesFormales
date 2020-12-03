@@ -3,6 +3,7 @@ import java.util.*;
 
 public class App {
 
+
     public static class Token {
         public final String t;
         public final Palabra p;
@@ -13,15 +14,17 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
-
-        List<Palabra> palabras = new ArrayList<>();
+    public static void main(String[] args) throws Exception {
+        List<String> palabras = new ArrayList<String>();										
         List<Token> tokens = new ArrayList<Token>();
-        
-        String path ="./4.txt";
+
+        String path ="test.txt";
         Lexer analizadorLexico = new Lexer();
         ReadFile fileReader = new ReadFile();
+        palabras=fileReader.ReadTxt(path);
+         
         
+
         palabras = fileReader.ReadTxt(path);
         //System.out.println(palabras);
         for (Palabra item : palabras) {
@@ -50,9 +53,11 @@ public class App {
                                 fileReader.getContent(token.p.linea - 1));
                 System.exit(1); // para que no siga
             }
-            previous = token.t;
+            previous=token.t;
         }
+												//Enviar datos
     }
+
 
     public static void SintaxException(String path, int linea, int index, String palabra) {
         String message = "\nError en la linea " + linea + ":";
@@ -70,3 +75,4 @@ public class App {
         System.out.println(message);
     }
 }
+
