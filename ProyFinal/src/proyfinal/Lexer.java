@@ -1,3 +1,4 @@
+package proyfinal;
 import java.util.regex.Pattern;
 
 
@@ -57,7 +58,7 @@ public class Lexer {
 
     public String tokenize(String input){
         String type = null;
-        Tabla_Hash TablaHash = new Tabla_Hash();
+        Tabla_Hash TablaHash = new Tabla_Hash(1);
         Boolean reservedEmail = lexReservedEmail(input);
         Boolean reservedPhone = lexReservedTelephone(input); 
         Boolean reservedName = lexReservedName(input);
@@ -66,27 +67,27 @@ public class Lexer {
         Boolean telephone = lexTelephone(input);
 
         if(reservedEmail){
-        	TablaHash.RECEIVE_DATA(input, "EMAIL");
+            TablaHash.RECEIVE_DATA(input, "EMAIL");
             return "EMAIL";
         }
         if(reservedPhone){
-        	TablaHash.RECEIVE_DATA(input, "TELEFONO");
+            TablaHash.RECEIVE_DATA(input, "TELEFONO");
             return "TELEFONO";
         }
         if(reservedName){
-        	TablaHash.RECEIVE_DATA(input, "NOMBRE");
+            TablaHash.RECEIVE_DATA(input, "NOMBRE");
             return "NOMBRE";
         }
         if(name){
-        	TablaHash.RECEIVE_DATA(input, "CONTNOMBRE");
+            TablaHash.RECEIVE_DATA(input, "CONTNOMBRE");
             return "CONTNOMBRE";
         }
         if(email){
-        	TablaHash.RECEIVE_DATA(input, "CONTEMAIL");
+            TablaHash.RECEIVE_DATA(input, "CONTEMAIL");
             return "CONTEMAIL";
         }
         if(telephone){
-        	TablaHash.RECEIVE_DATA(input, "CONTTELEFONO");
+            TablaHash.RECEIVE_DATA(input, "CONTTELEFONO");
             return "CONTTELEFONO";
         }
         //System.out.println("ERROR LÉXICO EN: " + input);
