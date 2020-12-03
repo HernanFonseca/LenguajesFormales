@@ -24,33 +24,55 @@ public class App {
         palabras=fileReader.ReadTxt(path);
          
         
-        for (String palabra : palabras) {
-        	//System.out.println("Palabra: "+ palabra);
-            String token=analizadorLexico.tokenize(palabra);
-            if(token!=null){
-                tokens.add(new Token(token, palabra));
-            }else{
-                System.out.println("ERROR LÉXICO");
-                tokens = new ArrayList<Token>();
-                break;
+
+        palabras = fileReader.ReadTxt(path);
+        //System.out.println(palabras);
+        for (Palabra item : palabras) {
+            String token = analizadorLexico.tokenize(item.palabra);
+            if(token != null){
+                tokens.add(new Token(token, item));
+            } else {
+                //// ERROR LÉXICO
+                LexicException(path, item.linea, item.index,
+                                fileReader.getContent(item.linea - 1));
+                System.exit(1); // para que no imprima lo que sigue
             }
         }
-        
-        System.out.println("\nTokens:");
-        String previous="";
-        for(Token token : tokens) {
+
+        System.out.println("Tokens:");
+        String previous = "";
+        for (Token token : tokens) {
             System.out.print(token.t + ": " + token.p.palabra);
             System.out.println("");
-            if(token.t.startsWith("CONT") && !token.t.equals("CONTNOMBRE") && previous.startsWith("CONT")){
-                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
-                break;
-            }
-            if(previous.equals("") && token.t.startsWith("CONT")){
-                System.out.println("ERROR SINTÁCTICO EN EL TOKEN: "+token.t);
-                break;
+            if ((previous.equals("") && !token.t.startsWith("CONT"))
+                    || (previous.startsWith("CONT") && !token.t.startsWith("CONT"))
+                    || previous.startsWith(token.t.substring(4))) {
+            } else {
+                //// ERROR SINTÁCTICO
+                SintaxException(path, token.p.linea, token.p.index,
+                                fileReader.getContent(token.p.linea - 1));
+                System.exit(1); // para que no siga
             }
             previous=token.t;
         }
 												//Enviar datos
     }
+
+
+    public static void SintaxException(String path, int linea, int index, String palabra) {
+        String message = "\nError en la linea " + linea + ":";
+        message += "\n\t" + palabra + "\n\t" + " ".repeat(index) + "^";
+        message += "\nError sintáctico: sintáxis inválida";
+        message += "\n\ten " + path + ":" + linea + "," + index;
+        System.out.println(message);
+    }
+
+    public static void LexicException(String path, int linea, int index, String palabra) {
+        String message = "\nError en la linea " + linea + ":";
+        message += "\n\t" + palabra + "\n\t" + " ".repeat(index) + "^";
+        message += "\nError léxico: palabra inválida";
+        message += "\n\ten " + path + ":" + linea + "," + index;
+        System.out.println(message);
+    }
 }
+
